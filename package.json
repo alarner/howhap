@@ -2,7 +2,7 @@
   "name": "howhap",
   "version": "1.0.0",
   "description": "A small library for dealing with errors",
-  "main": "index.js",
+  "main": "howhap.min.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
     "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./index.js -o ./howhap.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map howhap.min.map --output howhap.min.map]"
