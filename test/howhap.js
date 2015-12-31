@@ -112,6 +112,14 @@ describe('Howhap', function() {
 			expect(y.toJSON()).to.deep.equal(data);
 		});
 
+		it('should clone params when converting to json', function() {
+			let data = {message: 'Bad gateway', status: 502, params: {foo: 'bar'}};
+			let x = new Howhap(data);
+			let json = x.toJSON();
+			json.params.foo = 'baz';
+			expect(x.toJSON().params.foo).to.equal('bar');
+		});
+
 		it('should allow conversion to a string', function() {
 			let data = {message: 'Bad gateway', status: 502, params: {foo: 'bar'}};
 			let x = new Howhap(data);

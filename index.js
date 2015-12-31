@@ -54,10 +54,14 @@ module.exports = function(messageStatus, params) {
 	};
 
 	this.toJSON = function() {
+		let newParams = {};
+		for(let i in params) {
+			newParams[i] = ''+params[i];
+		}
 		return {
 			message: message,
 			status: status,
-			params: params
+			params: newParams
 		};
 	};
 
