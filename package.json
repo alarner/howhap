@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/alarner/howhap#readme",
   "dependencies": {
-    "browserify": "^12.0.1",
     "hogan.js": "^3.0.2"
   },
   "devDependencies": {
@@ -26,6 +25,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-register": "^6.3.13",
     "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
     "chai": "^3.4.1",
     "minifyify": "^7.1.0",
     "mocha": "^2.3.4"
