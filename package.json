@@ -1,22 +1,22 @@
 {
-  "name": "houston",
+  "name": "howhap",
   "version": "1.0.0",
   "description": "A small library for dealing with errors",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./index.js -o ./houston.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map houston.min.map --output houston.min.map]"
+    "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./index.js -o ./howhap.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map howhap.min.map --output howhap.min.map]"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alarner/houston.git"
+    "url": "git+https://github.com/alarner/howhap.git"
   },
   "author": "Aaron Larner",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alarner/houston/issues"
+    "url": "https://github.com/alarner/howhap/issues"
   },
-  "homepage": "https://github.com/alarner/houston#readme",
+  "homepage": "https://github.com/alarner/howhap#readme",
   "dependencies": {
     "browserify": "^12.0.1",
     "hogan.js": "^3.0.2"
