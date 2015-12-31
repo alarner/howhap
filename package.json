@@ -2,10 +2,10 @@
   "name": "howhap",
   "version": "1.0.0",
   "description": "A small library for dealing with errors",
-  "main": "howhap.min.js",
+  "main": "howhap.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./index.js -o ./howhap.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map howhap.min.map --output howhap.min.map]"
+    "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./index.js -o ./howhap.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map howhap.min.map --output howhap.min.map] && babel index.js --out-file howhap.js"
   },
   "repository": {
     "type": "git",
