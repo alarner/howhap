@@ -1,0 +1,31 @@
+{
+  "name": "houston",
+  "version": "1.0.0",
+  "description": "A small library for dealing with errors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/browserify/bin/cmd.js ./index.js -o ./houston.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map houston.min.map --output houston.min.map]"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alarner/houston.git"
+  },
+  "author": "Aaron Larner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alarner/houston/issues"
+  },
+  "homepage": "https://github.com/alarner/houston#readme",
+  "dependencies": {
+    "browserify": "^12.0.1",
+    "hogan.js": "^3.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "minifyify": "^7.1.0",
+    "uglify-js": "^2.6.1"
+  }
+}
