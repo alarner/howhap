@@ -91,16 +91,16 @@ describe('Howhap', function() {
 
 		it('should accept valid input', function() {
 			expect(() => { new Howhap({message: 'msg', status: 400}); })
-				.to.not.throw(Error);
+				.to.not.throw();
 
 			expect(() => { new Howhap({message: 'Hello {{ world }}', status: 404}); })
-				.to.not.throw(Error);
+				.to.not.throw();
 
 			expect(() => { new Howhap({message: 'This is a test', status: 500}); })
-				.to.not.throw(Error);
+				.to.not.throw();
 
 			expect(() => { new Howhap({message: 'Bad gateway', status: 502}); })
-				.to.not.throw(Error);
+				.to.not.throw();
 		});
 
 		it('should allow conversion to json', function() {
