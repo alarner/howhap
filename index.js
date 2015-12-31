@@ -1,5 +1,32 @@
+/*
+ * Stores and formats error information.
+ *
+ * let err =  new Houston(
+ *		{
+ *		 	message: 'This is wrong: {{ what }}',
+ *		 	status: 400
+ *		},
+ *		{
+ *			what: 'me'
+ *		}
+ * );
+ * res.status(err.status()).json(err.toJSON());
+ * res.render('error-page', { error: err.toJSON() });
+ */
 let Hogan = require('hogan.js');
-module.exports = function(message, status, params) {
+module.exports = function(messageStatus, params) {
+	if(Object.prototype.toString.call(messageStatus) !== '[object Object]') {
+		throw 'First argument to Houston constructor must be an object.';
+	}
+	if(!messageStatus.hasOwnProperty('message')) {
+		throw 'First argument to Houston constructor must contain a message property.';
+	}
+	if(!messageStatus.hasOwnProperty('status')) {
+		throw 'First argument to Houston constructor must contain a status property.';
+	}
+
+	let message = messageStatus.message;
+	let status = messageStatus.status;
 	let template = Hogan.compile(message);
 
 	this.display = function() {
@@ -25,5 +52,15 @@ module.exports = function(message, status, params) {
 		if(obj.hasOwnProperty('params')) {
 			params = obj.params;
 		}
+	};
+
+	this.message = function() {
+		return message;
+	};
+	this.status = function() {
+		return status;
+	};
+	this.params = function() {
+		return params;
 	};
 };
