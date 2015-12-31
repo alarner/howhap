@@ -24,12 +24,32 @@ module.exports = function(messageStatus, params) {
 	if(!messageStatus.hasOwnProperty('status')) {
 		throw 'First argument to Houston constructor must contain a status property.';
 	}
-
+	
 	let message = messageStatus.message;
-	let status = messageStatus.status;
+	let status = parseInt(messageStatus.status);
+
+	if(params === undefined || params === null) {
+		if(messageStatus.hasOwnProperty('params')) {
+			params = messageStatus.params;
+		}
+		else {
+			params = {};
+		}
+	}
+
+	if(typeof message !== 'string' && !(message instanceof String)) {
+		throw 'Message property must be a string.';
+	}
+	if(status !== messageStatus.status) {
+		throw 'Status property must be an integer.';
+	}
+	if(Object.prototype.toString.call(params) !== '[object Object]') {
+		throw 'Params must be an object.';
+	}
+	
 	let template = Hogan.compile(message);
 
-	this.display = function() {
+	this.toString = function() {
 		return template.render(params);
 	};
 
