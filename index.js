@@ -1,7 +1,7 @@
 /*
  * Stores and formats error information.
  *
- * let err =  new Houston(
+ * let err =  new Howhap(
  *		{
  *		 	message: 'This is wrong: {{ what }}',
  *		 	status: 400
@@ -16,13 +16,13 @@
 let Hogan = require('hogan.js');
 module.exports = function(messageStatus, params) {
 	if(Object.prototype.toString.call(messageStatus) !== '[object Object]') {
-		throw 'First argument to Houston constructor must be an object.';
+		throw 'First argument to Howhap constructor must be an object.';
 	}
 	if(!messageStatus.hasOwnProperty('message')) {
-		throw 'First argument to Houston constructor must contain a message property.';
+		throw 'First argument to Howhap constructor must contain a message property.';
 	}
 	if(!messageStatus.hasOwnProperty('status')) {
-		throw 'First argument to Houston constructor must contain a status property.';
+		throw 'First argument to Howhap constructor must contain a status property.';
 	}
 	
 	let message = messageStatus.message;
