@@ -1,5 +1,5 @@
 let expect = require('chai').expect;
-let Howhap = require('../index.js');
+let Howhap = require('../src/index.js');
 describe('Howhap', function() {
 	describe('errors', function() {
 		it('should not allow non-objects for the first parameter of the constructor', function() {
@@ -52,7 +52,7 @@ describe('Howhap', function() {
 				.to.throw('Message property must be a string.');
 		});
 
-		it('should require that the status property is a number', function() {
+		it('should require that the status property is an integer or a string representation of an integer', function() {
 			expect(() => { new Howhap({message: 'msg', status: false}); })
 				.to.throw('Status property must be an integer.');
 
@@ -63,7 +63,7 @@ describe('Howhap', function() {
 				.to.throw('Status property must be an integer.');
 
 			expect(() => { new Howhap({message: 'msg', status: '400'}); })
-				.to.throw('Status property must be an integer.');
+				.not.to.throw();
 
 			expect(() => { new Howhap({message: 'msg', status: 12.1}); })
 				.to.throw('Status property must be an integer.');
@@ -74,19 +74,19 @@ describe('Howhap', function() {
 
 		it('should require that params be empty or an object', function() {
 			expect(() => { new Howhap({message: 'msg', status: 400}, 123); })
-				.to.throw('Params must be an object.');
+				.to.throw('Params property must be an object.');
 
 			expect(() => { new Howhap({message: 'Hello {{ world }}', status: 404}, false); })
-				.to.throw('Params must be an object.');
+				.to.throw('Params property must be an object.');
 
 			expect(() => { new Howhap({message: 'This is a test', status: 500}, 'test'); })
-				.to.throw('Params must be an object.');
+				.to.throw('Params property must be an object.');
 
 			expect(() => { new Howhap({message: 'Bad gateway', status: 502}, [1,2,3]); })
-				.to.throw('Params must be an object.');
+				.to.throw('Params property must be an object.');
 
 			expect(() => { new Howhap({message: 'Bad gateway', status: 502, params: 'foo'}); })
-				.to.throw('Params must be an object.');
+				.to.throw('Params property must be an object.');
 		});
 
 		it('should accept valid input', function() {
@@ -136,6 +136,18 @@ describe('Howhap', function() {
 
 			let y = new Howhap({message: 'Bad gateway {{ foo }} {{ baz }}', status: 502}, {foo: 'baz'});
 			expect(y.toString()).to.equal('Bad gateway baz ');
+		});
+
+		it('should have a getter for the message property', function() {
+			let data = {message: 'Bad gateway {{ foo }}', status: 502, params: {foo: 'bar'}};
+			let x = new Howhap(data);
+			expect(x.message).to.equal('Bad gateway {{ foo }}');
+		});
+
+		it('should have a getter for the message property', function() {
+			let data = {message: 'Bad gateway {{ foo }}', status: 502, params: {foo: 'bar'}};
+			let x = new Howhap(data);
+			expect(x.message).to.equal('Bad gateway {{ foo }}');
 		});
 	});
 });

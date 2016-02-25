@@ -1,11 +1,11 @@
 {
   "name": "howhap",
   "version": "1.0.0",
-  "description": "A small library for dealing with errors",
-  "main": "howhap.js",
+  "description": "A small library for dealing with parameterized errors",
+  "main": "./dist/index.min.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./index.js -o ./howhap.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map howhap.min.map --output howhap.min.map] && babel index.js --out-file howhap.js"
+    "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./src/index.js -o ./dist/index.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map ./dist/index.min.map --output ./dist/index.min.map] && babel ./src/index.js --out-file ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,13 +21,13 @@
     "hogan.js": "^3.0.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-preset-es2015": "^6.3.13",
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
     "babel-register": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
-    "chai": "^3.4.1",
+    "chai": "^3.5.0",
     "minifyify": "^7.1.0",
-    "mocha": "^2.3.4"
+    "mocha": "^2.4.5"
   }
 }
