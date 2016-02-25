@@ -2,10 +2,10 @@
   "name": "howhap",
   "version": "2.0.0",
   "description": "A small library for dealing with parameterized errors",
-  "main": "./dist/index.min.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build": "npm run test && ./node_modules/browserify/bin/cmd.js ./src/index.js -o ./dist/index.min.js -t [ babelify --presets [ es2015 ] ] -d -p [minifyify --map ./dist/index.min.map --output ./dist/index.min.map] && babel ./src/index.js --out-file ./dist/index.js"
+    "build": "./node_modules/.bin/babel src -d dist"
   },
   "repository": {
     "type": "git",
