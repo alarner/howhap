@@ -20,10 +20,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * res.render('error-page', { error: err.toJSON() });
  */
 var Hogan = require('hogan.js');
-var message = null;
-var status = null;
-var params = null;
-var template = null;
 
 var Howhap = function () {
 	function Howhap(messageStatus, constructorParams) {
@@ -47,6 +43,11 @@ var Howhap = function () {
 			}
 		}
 
+		this._message = null;
+		this._status = null;
+		this._params = null;
+		this._template = null;
+
 		this.message = messageStatus.message;
 		this.status = messageStatus.status;
 		this.params = constructorParams;
@@ -55,18 +56,18 @@ var Howhap = function () {
 	_createClass(Howhap, [{
 		key: 'toString',
 		value: function toString() {
-			return template.render(params);
+			return this._template.render(this._params);
 		}
 	}, {
 		key: 'toJSON',
 		value: function toJSON() {
 			var newParams = {};
-			for (var i in params) {
-				newParams[i] = '' + params[i];
+			for (var i in this._params) {
+				newParams[i] = '' + this._params[i];
 			}
 			return {
-				message: message,
-				status: status,
+				message: this._message,
+				status: this._status,
 				params: newParams
 			};
 		}
@@ -86,31 +87,31 @@ var Howhap = function () {
 	}, {
 		key: 'message',
 		get: function get() {
-			return message;
+			return this._message;
 		},
 		set: function set(val) {
 			if (typeof val !== 'string' && !(val instanceof String)) {
 				throw new Error('Message property must be a string.');
 			}
-			message = val;
-			template = Hogan.compile(message);
+			this._message = val;
+			this._template = Hogan.compile(this._message);
 		}
 	}, {
 		key: 'status',
 		get: function get() {
-			return status;
+			return this._status;
 		},
 		set: function set(val) {
 			var tmp = parseInt(val);
 			if (tmp != val || isNaN(tmp)) {
 				throw new Error('Status property must be an integer.');
 			}
-			status = tmp;
+			this._status = tmp;
 		}
 	}, {
 		key: 'params',
 		get: function get() {
-			return params;
+			return this._params;
 		},
 		set: function set(val) {
 			if (val === undefined || val === null) {
@@ -120,7 +121,7 @@ var Howhap = function () {
 			if (Object.prototype.toString.call(val) !== '[object Object]') {
 				throw new Error('Params property must be an object.');
 			}
-			params = val;
+			this._params = val;
 		}
 	}]);
 

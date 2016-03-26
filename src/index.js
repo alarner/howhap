@@ -14,10 +14,7 @@
  * res.render('error-page', { error: err.toJSON() });
  */
 let Hogan = require('hogan.js');
-let message = null;
-let status = null;
-let params = null;
-let template = null;
+
 class Howhap {
 	constructor(messageStatus, constructorParams) {
 		if(Object.prototype.toString.call(messageStatus) !== '[object Object]') {
@@ -39,23 +36,28 @@ class Howhap {
 			}
 		}
 
+		this._message = null;
+		this._status = null;
+		this._params = null;
+		this._template = null;
+
 		this.message = messageStatus.message;
 		this.status = messageStatus.status;
 		this.params = constructorParams;
 	}
 
 	toString() {
-		return template.render(params);
+		return this._template.render(this._params);
 	}
 
 	toJSON() {
 		let newParams = {};
-		for(let i in params) {
-			newParams[i] = ''+params[i];
+		for(let i in this._params) {
+			newParams[i] = ''+this._params[i];
 		}
 		return {
-			message: message,
-			status: status,
+			message: this._message,
+			status: this._status,
 			params: newParams
 		};
 	}
@@ -73,19 +75,19 @@ class Howhap {
 	}
 
 	get message() {
-		return message;
+		return this._message;
 	}
 
 	set message(val) {
 		if(typeof val !== 'string' && !(val instanceof String)) {
 			throw new Error('Message property must be a string.');
 		}
-		message = val;
-		template = Hogan.compile(message);
+		this._message = val;
+		this._template = Hogan.compile(this._message);
 	}
 
 	get status() {
-		return status;
+		return this._status;
 	}
 
 	set status(val) {
@@ -93,11 +95,11 @@ class Howhap {
 		if(tmp != val || isNaN(tmp)) {
 			throw new Error('Status property must be an integer.');
 		}
-		status = tmp;
+		this._status = tmp;
 	}
 
 	get params() {
-		return params;
+		return this._params;
 	}
 
 	set params(val) {
@@ -108,7 +110,7 @@ class Howhap {
 		if(Object.prototype.toString.call(val) !== '[object Object]') {
 			throw new Error('Params property must be an object.');
 		}
-		params = val;
+		this._params = val;
 	}
 }
 

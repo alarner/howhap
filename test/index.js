@@ -1,5 +1,5 @@
 let expect = require('chai').expect;
-let Howhap = require('../dist/index.js');
+let Howhap = require('../src/index.js');
 describe('Howhap', function() {
 	describe('errors', function() {
 		it('should not allow non-objects for the first parameter of the constructor', function() {
@@ -148,6 +148,16 @@ describe('Howhap', function() {
 			let data = {message: 'Bad gateway {{ foo }}', status: 502, params: {foo: 'bar'}};
 			let x = new Howhap(data);
 			expect(x.message).to.equal('Bad gateway {{ foo }}');
+		});
+
+		it('should not cause problems when two Howhap objects are created', function() {
+			let data = {message: 'Bad gateway {{ foo }}', status: 502, params: {foo: 'bar'}};
+			let x = new Howhap(data);
+
+			let data2 = {message: 'Another message', status: 502, params: {foo: 'bar'}};
+			let y = new Howhap(data2);
+			expect(x.message).to.equal('Bad gateway {{ foo }}');
+			expect(y.message).to.equal('Another message');
 		});
 	});
 });
