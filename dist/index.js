@@ -51,6 +51,7 @@ var Howhap = function () {
 		this.message = messageStatus.message;
 		this.status = messageStatus.status;
 		this.params = constructorParams;
+		this.name = 'Howhap';
 	}
 
 	_createClass(Howhap, [{

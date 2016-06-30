@@ -159,5 +159,10 @@ describe('Howhap', function() {
 			expect(x.message).to.equal('Bad gateway {{ foo }}');
 			expect(y.message).to.equal('Another message');
 		});
+		it('should should have a name property', function() {
+			let data = {message: 'Bad gateway {{ foo }}', status: 502, params: {foo: 'bar'}};
+			let x = new Howhap(data);
+			expect(x.name).to.be.ok;
+		});
 	});
 });

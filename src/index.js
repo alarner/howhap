@@ -44,6 +44,7 @@ class Howhap {
 		this.message = messageStatus.message;
 		this.status = messageStatus.status;
 		this.params = constructorParams;
+		this.name = 'Howhap';
 	}
 
 	toString() {
